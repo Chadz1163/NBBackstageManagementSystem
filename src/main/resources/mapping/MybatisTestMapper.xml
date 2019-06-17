@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sspu.chadz1.noblemanagement.dao.MybatisTestMapper">
+
+    <insert id="insertStudent">
+        insert into student VALUES ('11111111', 'bbb','asd','bb','2019-06-17',NULL);
+    </insert>
+
+
+</mapper>
