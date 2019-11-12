@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sspu.chadz1.noblemanagement.dao.StudentMapper">
+
+    <resultMap id="baseResult" type="cn.edu.sspu.chadz1.noblemanagement.PO.Student">
+        <id property="childCode" column="childCode" javaType="String"/>
+        <result property="childName" column="childName" javaType="String"/>
+        <result property="petName" column="petName" javaType="String"/>
+        <result property="sex" column="sex" javaType="String"/>
+        <result property="bornData" column="bornData" javaType="Date"/>
+        <result property="stuTrain" column="stuTrain" javaType="String"/>
+    </resultMap>
+
+    <parameterMap id="student" type="cn.edu.sspu.chadz1.noblemanagement.VO.request.StudentVO">
+        <parameter property="childCode"/>
+        <parameter property="childName"/>
+        <parameter property="petName"/>
+        <parameter property="sex"/>
+        <parameter property="bornData"/>
+        <parameter property="stuTrain"/>
+    </parameterMap>
+
+    <select id="getStudents" resultMap="baseResult">
+        SELECT * FROM student ORDER BY childCode
+        /*升序、降序*/
+        <if test="sort == 1">
+            ASC
+        </if>
+        <if test="sort == 2">
+            DESC
+        </if>
+        LIMIT #{beginIndex},#{limitNum};
+    </select>
+
+    <select id="getStudentsSum" resultType="Integer">
+        select count(*) from student;
+    </select>
+
+    <insert id="insertStudent" parameterMap="student">
+        INSERT INTO student (childCode,childName,petName,sex,bornData,stuTrain) VALUES (#{student.childCode},#{student.childName},#{student.petName},#{student.sex},#{student.bornData},#{student.stuTrain});
+    </insert>
+
+    <select id="getChildCode" parameterType="String" resultType="Integer">
+        SELECT COUNT(*) FROM student where childCode = #{childCode};
+    </select>
+
+    <update id="editStudent" parameterMap="student">
+        update student set
+        <if test="student.childName != null">
+            childName = #{student.childName},
+        </if>
+        <if test="student.petName != null">
+            petName = #{student.petName},
+        </if>
+        <if test="student.sex != null">
+            sex = #{student.sex},
+        </if>
+        <if test="student.bornData != null and student.stuTrain != null">
+            bornData = #{student.bornData},
+        </if>
+        <if test="student.bornData != null and student.stuTrain == null">
+            bornData = #{student.bornData}
+        </if>
+        <if test="student.stuTrain != null">
+            stuTrain = #{student.stuTrain}
+        </if>
+        where childCode = #{student.childCode};
+    </update>
+
+    <delete id="deleteStudent" parameterType="String">
+        DELETE FROM student WHERE childCode = #{childCode};
+    </delete>
+
+    <select id="findStudent" parameterMap="student" resultMap="baseResult">
+        SELECT * FROM student
+        <where>
+            <if test="student.childCode != null">
+                AND childCode = #{student.childCode}
+            </if>
+            <if test="student.childName != null">
+                AND childName = #{student.childName}
+            </if>
+            <if test="student.petName != null">
+                AND petName = #{student.petName}
+            </if>
+            <if test="student.sex != null">
+                AND sex = #{student.sex}
+            </if>
+            <if test="student.bornData != null">
+                AND bornData = #{student.bornData}
+            </if>
+            <if test="student.stuTrain != null">
+                AND stuTrain = #{student.stuTrain}
+            </if>
+        </where>
+    </select>
+
+
+</mapper>

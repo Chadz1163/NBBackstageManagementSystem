@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.edu.sspu.chadz1.noblemanagement.dao.LeaveMapper">
+
+    <resultMap id="LeaveInfo" type="cn.edu.sspu.chadz1.noblemanagement.PO.LeaveInfoPO">
+        <id property="id" column="id" javaType="int" />
+        <result property="childName" column="childName" javaType="String" />
+        <result property="time" column="time" javaType="String" />
+        <result property="reason" column="reason" javaType="String"/>
+    </resultMap>
+
+    <select id="findLeaveInfo" resultMap="LeaveInfo">
+        SELECT * FROM leaveinfo;
+    </select>
+
+    <delete id="deleteLeaveInfo" parameterType="Integer">
+        delete from leaveinfo where id = #{id};
+    </delete>
+
+
+
+</mapper>
