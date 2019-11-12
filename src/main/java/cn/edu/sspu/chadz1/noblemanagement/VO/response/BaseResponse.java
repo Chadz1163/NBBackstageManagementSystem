@@ -9,5 +9,5 @@ public class BaseResponse {
 
     private Integer status;
     private String msg;
-    private Object result;
+    private Object data;
 }

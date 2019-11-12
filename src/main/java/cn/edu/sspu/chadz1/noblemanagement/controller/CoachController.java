@@ -16,6 +16,7 @@ public class CoachController {
     @ApiOperation(value = "教练员登录")
     public BaseResponse login() {
         System.out.println("登录成功");
-        return null;
+        BaseResponse baseResponse = new BaseResponse(200, "登录成功", null);
+        return baseResponse;
     }
 }

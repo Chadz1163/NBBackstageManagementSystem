@@ -8,10 +8,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSwagger2
 @EnableTransactionManagement
-public class NoblemanagementApplication {
+public class NobleManagementApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(NoblemanagementApplication.class, args);
+        SpringApplication.run(NobleManagementApplication.class, args);
     }
 
 }
