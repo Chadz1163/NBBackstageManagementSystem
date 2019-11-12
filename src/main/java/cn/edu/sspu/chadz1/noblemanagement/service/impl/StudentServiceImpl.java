@@ -22,7 +22,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public BaseResponse getStudents(int pageNum, int pageSize, int sort) {
         int studentsSum = studentMapper.getStudentsSum();
-        int totalPage = (int) Math.ceil(pageSize / studentsSum);
+        int totalPage = (int) Math.ceil(pageSize * 1.0 / studentsSum);
         if (pageSize > studentsSum) {
             List<Student> students = studentMapper.getStudents(pageSize, sort, 0);
             Map data = new HashMap();

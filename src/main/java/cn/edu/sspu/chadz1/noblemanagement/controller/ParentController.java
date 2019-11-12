@@ -24,7 +24,7 @@ public class ParentController {
     private ParentServiceImpl parentService;
 
     @GetMapping(value = "/findAllParent")
-    @ApiOperation(value = "查询所有家长信息", tags = "查询所有家长信息")
+    @ApiOperation(value = "查询所有家长信息")
     public BaseResponse findAllParent(@RequestParam Integer page, @RequestParam Integer size) {
         BaseResponse allParent = parentService.findAllParent(page - 1, size);
         return allParent;
